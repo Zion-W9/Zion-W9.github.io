@@ -1,0 +1,412 @@
+<!doctype html><html itemscope lang=en-us itemtype=http://schema.org/WebPage><head><meta charset=utf-8><title>Introduction to Langchain</title><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=5"><meta name=theme-name content="hugoplate"><link rel="shortcut icon" href=/images/favicon_hudc909defc8a1195c2d35cb1aef5e0c77_37053_32x0_resize_lanczos_3.png type=image/x-icon><link rel=icon href=/images/favicon_hudc909defc8a1195c2d35cb1aef5e0c77_37053_32x0_resize_lanczos_3.png type=image/x-icon><link rel=icon type=image/png sizes=16x16 href=/images/favicon_hudc909defc8a1195c2d35cb1aef5e0c77_37053_16x0_resize_lanczos_3.png><link rel=icon type=image/png sizes=32x32 href=/images/favicon_hudc909defc8a1195c2d35cb1aef5e0c77_37053_32x0_resize_lanczos_3.png><link rel=apple-touch-icon sizes=180x180 href=/images/favicon_hudc909defc8a1195c2d35cb1aef5e0c77_37053_180x0_resize_lanczos_3.png><link rel=manifest href=/manifest.webmanifest><meta name=msapplication-TileColor content="#ddd"><meta name=theme-color content="#ffffff"><base href=https://zion-w9.github.io/blog/post-1/><meta name=generator content="Hugo 0.117.0"><meta name=keywords content="Boilerplate,Hugo"><meta name=description content="A brief intro of Langchain"><meta name=author content="zeon.studio"><meta property="og:image" content="https://zion-w9.github.io/images/Blog/Langchain.png"><meta name=twitter:image content="https://zion-w9.github.io/images/Blog/Langchain.png"><meta name=twitter:card content="summary_large_image"><meta property="og:image:width" content="1615"><meta property="og:image:height" content="384"><meta property="og:image:type" content="image/.png"><meta property="og:title" content="Introduction to Langchain"><meta property="og:description" content="A brief intro of Langchain"><meta property="og:type" content="website"><meta property="og:url" content="https://zion-w9.github.io/blog/post-1/"><meta name=twitter:title content="Introduction to Langchain"><meta name=twitter:description content="A brief intro of Langchain"><script>let indexURL="https://zion-w9.github.io/searchindex.json",includeSectionsInSearch=["blog"],no_results_for="No results for",empty_search_results_placeholder="Type something to search.."</script><meta http-equiv=x-dns-prefetch-control content="on"><link rel=preconnect href=https://use.fontawesome.com crossorigin><link rel=preconnect href=//cdnjs.cloudflare.com><link rel=preconnect href=//www.googletagmanager.com><link rel=preconnect href=//www.google-analytics.com><link rel=dns-prefetch href=https://use.fontawesome.com><link rel=dns-prefetch href=//ajax.googleapis.com><link rel=dns-prefetch href=//cdnjs.cloudflare.com><link rel=dns-prefetch href=//www.googletagmanager.com><link rel=dns-prefetch href=//www.google-analytics.com><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//connect.facebook.net><link rel=dns-prefetch href=//platform.linkedin.com><link rel=dns-prefetch href=//platform.twitter.com><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600&family=Signika:wght@500;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><link href="/css/style.min.9e141a680e4b012a36cf95a22a50968480a659c5329e54e7c752dda5f2c84fb0.css" integrity="sha256-nhQaaA5LASo2z5WiKlCWhICmWcUynlTnx1LdpfLIT7A=" rel=stylesheet></head><body><header class="header sticky top-0 z-30"><nav class="navbar container"><div class=order-0><a class="navbar-brand block" href=/><img fetchpriority=high decoding=async class="img logo-light" width=160 height=32 src=/images/logo_hu85ab06904fd41a5fc5ca32f350144ba0_234496_320x0_resize_q90_h2_lanczos_3.webp alt="Zeen Wang" onerror='this.onerror=null,this.src="/images/logo_hu85ab06904fd41a5fc5ca32f350144ba0_234496_320x0_resize_lanczos_3.png"'>
+<img fetchpriority=high decoding=async class="img logo-dark" width=160 height=32 src=/images/logo-darkmode_hu95dd250582672ebe0c063cf60eed448f_3090_320x0_resize_q90_h2_lanczos_3.webp alt="Zeen Wang" onerror='this.onerror=null,this.src="/images/logo-darkmode_hu95dd250582672ebe0c063cf60eed448f_3090_320x0_resize_lanczos_3.png"'></a></div><input id=nav-toggle type=checkbox class=hidden>
+<label for=nav-toggle class="order-3 cursor-pointer flex items-center lg:hidden text-dark dark:text-white lg:order-1"><svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20"><title>Menu Open</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0V0z"/></svg><svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20"><title>Menu Close</title><polygon points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2" transform="rotate(45 10 10)"/></svg></label><ul id=nav-menu class="navbar-nav order-3 hidden lg:flex w-full pb-6 lg:order-1 lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8"><li class=nav-item><a class=nav-link href=/>Home</a></li><li class=nav-item><a class=nav-link href=/about/>About</a></li><li class=nav-item><a class=nav-link href=/blog/>Blog</a></li><li class=nav-item><a class=nav-link href=/authors/>Project</a></li></ul><div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0"></div></nav></header><main><section class="section pt-7"><div class=container><div class="row justify-center"><article class=lg:col-10><div class=mb-10><picture><source srcset=/images/Blog/Langchain_hu783282be189266eab9fd4910bf4624cb_48468_545x0_resize_q90_h2_lanczos_3.webp media="(max-width: 575px)"><source srcset=/images/Blog/Langchain_hu783282be189266eab9fd4910bf4624cb_48468_600x0_resize_q90_h2_lanczos_3.webp media="(max-width: 767px)"><source srcset=/images/Blog/Langchain_hu783282be189266eab9fd4910bf4624cb_48468_700x0_resize_q90_h2_lanczos_3.webp media="(max-width: 991px)"><source srcset=/images/Blog/Langchain_hu783282be189266eab9fd4910bf4624cb_48468_1110x0_resize_q90_h2_lanczos_3.webp><img loading=lazy decoding=async src=/images/Blog/Langchain_hu783282be189266eab9fd4910bf4624cb_48468_1110x0_resize_lanczos_3.png class="w-full rounded img" alt="Introduction to Langchain" width=1615 height=384></picture></div><h1 class="h2 mb-4">Introduction to Langchain</h1><ul class=mb-4><li class="mr-4 inline-block"><a href=/authors/zeen/><i class="fa-regular fa-circle-user mr-2"></i>Zeen</a></li><li class="mr-4 inline-block"><i class="fa-regular fa-folder mr-2"></i>
+<a href=/categories/nlp/ class=ms-1>Nlp
+,</a>
+<a href=/categories/llm/ class=ms-1>Llm</a></li><li class="mr-4 inline-block"><i class="fa-regular fa-clock mr-2"></i>
+August 2, 2023</li></ul><div class="content mb-10"><h2 id=langchainhttpspythonlangchaincomdocsget_started><a href=https://python.langchain.com/docs/get_started target=_blank>LangChain</a></h2><h3 id=introducing-langchain>Introducing LangChain</h3><p><strong>LangChain</strong>: A cutting-edge open-source framework designed to amplify the capabilities of your LLM (Language Learning Model).</p><h3 id=core-features-of-langchain>Core Features of LangChain</h3><ul><li><strong>Prompt Management</strong>: Efficiently manage and optimize prompts tailored for diverse tasks.</li><li><strong>Task Subdivision</strong>: Seamlessly transition between various subtasks within a primary task.</li><li><strong>Data Augmentation Generation</strong>: This involves a unique chaining process that collaborates with external data sources to fetch data for the generation phase. For instance, generating summaries from extensive texts or Q&amp;A sessions based on specific data sources.</li><li><strong>Agent Operations</strong>: Agents execute distinct actions based on varying instructions until the entire operation concludes.</li><li><strong>Evaluation Mechanism</strong>: Traditional metrics often fall short when evaluating generative models. LangChain introduces an innovative approach by utilizing the language model itself for evaluations, offering supportive hints and chains.</li><li><strong>Memory Management</strong>: Efficiently handle intermediate states throughout the process.</li></ul><p>To encapsulate, LangChain can be visualized as a system that manages and refines prompts throughout a process&rsquo;s lifecycle. It employs various agents to execute actions based on these prompts, utilizes memory to oversee intermediate states, and then harnesses chains to interlink different agents, forming a cohesive loop.</p><h3 id=value-propositions-of-langchain>Value Propositions of LangChain</h3><ul><li><strong>Components</strong>: These are abstract constructs designed for language model processing, accompanied by a suite of implementations for each concept. Regardless of your engagement with other LangChain features, these components are modular and user-friendly.</li><li><strong>Pre-configured Chains</strong>: These are structured amalgamations of components aimed at executing specific high-tier tasks. While these chains offer a quick start, the components ensure easy customization for intricate applications.</li></ul><h3 id=key-components-of-langchain>Key Components of LangChain</h3><ul><li><strong>Model I/O</strong>: Interface for the language model.</li><li><strong>Data Connection</strong>: Interface tailored for specific tasks.</li><li><strong>Chains</strong>: Construct a series of calls.</li><li><strong>Agents</strong>: Upon receiving high-level directives, the chain decides the appropriate tools.</li><li><strong>Memory</strong>: Retain application state between chain runs.</li><li><strong>Callbacks</strong>: Document and relay any intermediate chain steps.</li><li><strong>Indexes</strong>: Techniques to structure documents for optimal LLM interaction.</li></ul><h3 id=data-connection-a-deep-dive>Data Connection: A Deep Dive</h3><p>LLM applications often necessitate user-specific data that isn&rsquo;t part of the model&rsquo;s foundational training set. LangChain offers a comprehensive toolkit for data handling:</p><ul><li><strong>Document Loader</strong>: Fetch documents from a plethora of sources.</li><li><strong>Document Converter</strong>: Segment documents, eliminate superfluous ones, and more.</li><li><strong>Text Embedding Model</strong>: Convert unstructured text into float lists.</li><li><strong>Vector Storage</strong>: Archive and search embedded data.</li><li><strong>Retriever</strong>: Efficiently search through your data.</li></ul><h3 id=visual-representation-of-data-connection>Visual Representation of Data Connection</h3><p><img src=https://python.langchain.com/assets/images/data_connection-c42d68c3d092b85f50d08d4cc171fc25.jpg alt="Data Connection Flow"></p><h3 id=setting-up-data-connection-document-loader>Setting Up Data Connection: Document Loader</h3><p>Python installation package command:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>pip install langchain
+</span></span><span style=display:flex><span>pip install unstructured
+</span></span><span style=display:flex><span>pip install jq
+</span></span></code></pre></div><p><strong>CSV basic usage</strong></p><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python3 data-lang=python3><span style=display:flex><span><span style=color:#069;font-weight:700>import</span> <span style=color:#0cf;font-weight:700>os</span>
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>pathlib</span> <span style=color:#069;font-weight:700>import</span> Path
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>langchain.document_loaders</span> <span style=color:#069;font-weight:700>import</span> UnstructuredCSVLoader _
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>langchain.document_loaders.csv_loader</span> <span style=color:#069;font-weight:700>import</span> CSVLoader
+</span></span><span style=display:flex><span>EXAMPLE_DIRECTORY <span style=color:#555>=</span> file_path <span style=color:#555>=</span> Path(__file__ ) <span style=color:#555>.</span>parent <span style=color:#555>.</span>parent <span style=color:#555>/</span> <span style=color:#c30>&#34;examples&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>def</span> <span style=color:#c0f>test_unstructured_csv_loader</span> ( ) <span style=color:#555>-</span> <span style=color:#555>&gt;</span> <span style=color:#069;font-weight:700>None</span>:
+</span></span><span style=display:flex><span><span style=color:#c30>&#34;&#34;&#34;Test unstructured loader.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    file_path <span style=color:#555>=</span> os<span style=color:#555>.</span>path<span style=color:#555>.</span>join ( EXAMPLE_DIRECTORY , <span style=color:#c30>&#34;stanley-cups.csv&#34;</span>)
+</span></span><span style=display:flex><span>loader <span style=color:#555>=</span> UnstructuredCSVLoader (<span style=color:#366>str</span>( file_path ))
+</span></span><span style=display:flex><span>docs <span style=color:#555>=</span> loader<span style=color:#555>.</span>load ()
+</span></span><span style=display:flex><span><span style=color:#366>print</span>(docs)
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>assert</span> <span style=color:#366>len</span> (docs) <span style=color:#555>==</span> <span style=color:#f60>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>def</span> <span style=color:#c0f>test_csv_loader</span> ( ) :
+</span></span><span style=display:flex><span>  file_path <span style=color:#555>=</span> os<span style=color:#555>.</span>path<span style=color:#555>.</span>join ( EXAMPLE_DIRECTORY , <span style=color:#c30>&#34;stanley-cups.csv&#34;</span>)
+</span></span><span style=display:flex><span>loader <span style=color:#555>=</span> CSVLoader ( file_path )
+</span></span><span style=display:flex><span>docs <span style=color:#555>=</span> loader<span style=color:#555>.</span>load ()
+</span></span><span style=display:flex><span><span style=color:#366>print</span>(docs)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>test_unstructured_csv_loader ( ) _
+</span></span><span style=display:flex><span>test_csv_loader ( ) _
+</span></span></code></pre></div><p><strong>File directory usage</strong></p><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python3 data-lang=python3><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>langchain.document_loaders</span> <span style=color:#069;font-weight:700>import</span> DirectoryLoader , TextLoader _
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>text_loader_kwargs <span style=color:#555>=</span> { <span style=color:#c30>&#39; autodetect_encoding &#39;</span>: <span style=color:#069;font-weight:700>True</span>}
+</span></span><span style=display:flex><span>loader <span style=color:#555>=</span> DirectoryLoader ( <span style=color:#c30>&#39;../examples/&#39;</span>,
+</span></span><span style=display:flex><span>glob<span style=color:#555>=</span><span style=color:#c30>&#34;**/*.txt&#34;</span>, <span style=color:#09f;font-style:italic># traverse txt files</span>
+</span></span><span style=display:flex><span>              show_progress <span style=color:#555>=</span><span style=color:#069;font-weight:700>True</span>, <span style=color:#09f;font-style:italic># show progress</span>
+</span></span><span style=display:flex><span>              use_multithreading <span style=color:#555>=</span><span style=color:#069;font-weight:700>True</span>, <span style=color:#09f;font-style:italic># use multithreading</span>
+</span></span><span style=display:flex><span>              loader_cls <span style=color:#555>=</span> TextLoader , <span style=color:#09f;font-style:italic># use the way to load data</span>
+</span></span><span style=display:flex><span>              silent_errors <span style=color:#555>=</span><span style=color:#069;font-weight:700>True</span>, <span style=color:#09f;font-style:italic>#Continue when encountering an error</span>
+</span></span><span style=display:flex><span>              loader_kwargs <span style=color:#555>=</span> text_loader_kwargs ) <span style=color:#09f;font-style:italic># You can use a dictionary to pass in parameters</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>docs <span style=color:#555>=</span> loader<span style=color:#555>.</span>load ()
+</span></span><span style=display:flex><span><span style=color:#366>print</span>(<span style=color:#c30>&#34;</span><span style=color:#c30;font-weight:700>\n</span><span style=color:#c30>&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#366>print</span>( docs[ <span style=color:#f60>0</span>])
+</span></span></code></pre></div><p><strong>HTML usage</strong></p><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python3 data-lang=python3><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>langchain.document_loaders</span> <span style=color:#069;font-weight:700>import</span> UnstructuredHTMLLoader , BSHTMLLoader _
+</span></span><span style=display:flex><span>loader <span style=color:#555>=</span> UnstructuredHTMLLoader (<span style=color:#c30>&#34;../examples/example.html&#34;</span>)
+</span></span><span style=display:flex><span>docs <span style=color:#555>=</span> loader<span style=color:#555>.</span>load ()
+</span></span><span style=display:flex><span><span style=color:#366>print</span>( docs[ <span style=color:#f60>0</span>])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>loader <span style=color:#555>=</span> BSHTMLLoader (<span style=color:#c30>&#34;../examples/example.html&#34;</span>)
+</span></span><span style=display:flex><span>docs <span style=color:#555>=</span> loader<span style=color:#555>.</span>load ()
+</span></span><span style=display:flex><span><span style=color:#366>print</span>( docs[ <span style=color:#f60>0</span>])
+</span></span></code></pre></div><p><strong>JSON Usage</strong></p><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python3 data-lang=python3><span style=display:flex><span><span style=color:#069;font-weight:700>import</span> <span style=color:#0cf;font-weight:700>json</span>
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>pathlib</span> <span style=color:#069;font-weight:700>import</span> Path
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>pprint</span> <span style=color:#069;font-weight:700>import</span> pprint
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>file_path <span style=color:#555>=</span> <span style=color:#c30>&#39;../examples/facebook_chat.json &#39;</span>
+</span></span><span style=display:flex><span>data <span style=color:#555>=</span> json<span style=color:#555>.</span> loads (Path( file_path )<span style=color:#555>.</span> read_text ())
+</span></span><span style=display:flex><span>pprint (data)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#c30>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#c30>{&#39;image&#39;: {&#39; creation_timestamp &#39;: 1675549016, &#39; uri &#39;: &#39;image_of_the_chat.jpg&#39;},
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; is_still_participant &#39;: True ,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; joinable_mode &#39;: {&#39;link&#39;: &#39;&#39;, &#39;mode&#39;: 1} ,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; magic_words &#39;: [] ,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39;messages&#39;: [{&#39;content&#39;: &#39;Bye!&#39;,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; sender_name &#39;: &#39;User 2&#39; ,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; timestamp _ms &#39;: 1675597571851},
+</span></span></span><span style=display:flex><span><span style=color:#c30>{&#39;content&#39;: &#39;Oh no worries! Bye&#39;,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; sender_name &#39;: &#39;User 1&#39; ,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; timestamp _ms &#39;: 1675597435669},
+</span></span></span><span style=display:flex><span><span style=color:#c30>{&#39;content&#39;: &#39;No Im sorry it was my mistake, the blue one is not &#39;
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; for sale&#39;,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; sender_name &#39;: &#39;User 2&#39; ,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; timestamp _ms &#39;: 1675596277579},
+</span></span></span><span style=display:flex><span><span style=color:#c30>{&#39;content&#39;: &#39;I thought you were selling the blue one!&#39;,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; sender_name &#39;: &#39;User 1&#39; ,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; timestamp _ms &#39;: 1675595140251},
+</span></span></span><span style=display:flex><span><span style=color:#c30>{&#39;content&#39;: &#39; Im not interested in this bag. Im interested in the &#39;
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; blue one!&#39;,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; sender_name &#39;: &#39;User 1&#39; ,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; timestamp _ms &#39;: 1675595109305},
+</span></span></span><span style=display:flex><span><span style=color:#c30>{&#39;content&#39;: &#39;Here is $129&#39;,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; sender_name &#39;: &#39;User 2&#39; ,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; timestamp _ms &#39;: 1675595068468},
+</span></span></span><span style=display:flex><span><span style=color:#c30>{&#39;photos&#39;: [{&#39; creation_timestamp &#39;: 1675595059,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; uri &#39;: &#39;url_of_some_picture.jpg&#39;}],
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; sender_name &#39;: &#39;User 2&#39; ,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; timestamp _ms &#39;: 1675595060730},
+</span></span></span><span style=display:flex><span><span style=color:#c30>{&#39;content&#39;: &#39;Online is at least $100&#39;,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; sender_name &#39;: &#39;User 2&#39; ,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; timestamp _ms &#39;: 1675595045152},
+</span></span></span><span style=display:flex><span><span style=color:#c30>{&#39;content&#39;: &#39;How much do you want?&#39;,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; sender_name &#39;: &#39;User 1&#39; ,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; timestamp _ms &#39;: 1675594799696},
+</span></span></span><span style=display:flex><span><span style=color:#c30>{&#39;content&#39;: &#39; Goodmorning ! $50 is too low.&#39;,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; sender_name &#39;: &#39;User 2&#39; ,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; timestamp _ms &#39;: 1675577876645},
+</span></span></span><span style=display:flex><span><span style=color:#c30>{&#39;content&#39;: &#39;Hi! Im interested in your bag. Im offering $50. Let &#39;
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; I know if you are interested. Thanks!&#39;,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; sender_name &#39;: &#39;User 1&#39; ,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; timestamp _ms &#39;: 1675549022673}],
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39;participants&#39;: [{&#39;name&#39;: &#39;User 1&#39;}, {&#39;name&#39;: &#39;User 2&#39;}],
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39; thread _path &#39;: &#39;inbox/User 1 and User 2 chat&#39;,
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39;title&#39;: &#39;User 1 and User 2 chat&#39;}
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>Load data using langchain :
+</span></span><span style=display:flex><span><span style=color:#a00;background-color:#faa>```</span>python
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>langchain.document_loaders</span> <span style=color:#069;font-weight:700>import</span> JSONLoader _
+</span></span><span style=display:flex><span>loader <span style=color:#555>=</span> JSONLoader (
+</span></span><span style=display:flex><span>    file_path <span style=color:#555>=</span><span style=color:#c30>&#39;../examples/ facebook_chat.json &#39;</span>,
+</span></span><span style=display:flex><span>    jq_schema <span style=color:#555>=</span><span style=color:#c30>&#39;.messages[].content&#39;</span> <span style=color:#09f;font-style:italic># will report an error Expected page_content is string, got &lt;class &#39; NoneType &#39;&gt; instead.</span>
+</span></span><span style=display:flex><span>    page_content <span style=color:#555>=</span><span style=color:#069;font-weight:700>False</span>, <span style=color:#09f;font-style:italic># add this line after error reporting)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>data <span style=color:#555>=</span> loader<span style=color:#555>.</span>load ()
+</span></span><span style=display:flex><span><span style=color:#366>print</span>( data[ <span style=color:#f60>0</span>])
+</span></span></code></pre></div><p><strong>PDF Usage</strong></p><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>&#39;&#39;&#39;
+</span></span><span style=display:flex><span>first usage
+</span></span><span style=display:flex><span>&#39;&#39;&#39;
+</span></span><span style=display:flex><span>from langchain.document_loaders import PyPDFLoader _
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>loader = PyPDFLoader (&#34;../examples/layout-parser-paper.pdf&#34;)
+</span></span><span style=display:flex><span>pages = loader.load_and_split ( )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>print( pages[ 0])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&#39;&#39;&#39;
+</span></span><span style=display:flex><span>second usage
+</span></span><span style=display:flex><span>&#39;&#39;&#39;
+</span></span><span style=display:flex><span>from langchain.document_loaders import MathpixPDFLoader _
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>loader = MathpixPDFLoader (&#34; example_data /layout-parser-paper.pdf&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>data = loader.load ()
+</span></span><span style=display:flex><span>print( data[ 0])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&#39;&#39;&#39;
+</span></span><span style=display:flex><span>third usage
+</span></span><span style=display:flex><span>&#39;&#39;&#39;
+</span></span><span style=display:flex><span>from langchain.document_loaders import UnstructuredPDFLoader _
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>loader = UnstructuredPDFLoader (&#34;../examples/layout-parser-paper.pdf&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>data = loader.load ()
+</span></span><span style=display:flex><span>print( data[ 0])
+</span></span></code></pre></div><h3 id=data-connection---document-conversion>data connection - document conversion</h3><p>Once files are loaded, adapting them to suit specific applications becomes paramount. A classic scenario involves segmenting a lengthy document into smaller fragments to align with your model&rsquo;s context window. LangChain is equipped with an array of integrated document conversion utilities. These tools facilitate effortless operations such as splitting, merging, filtering, and various other document manipulations.</p><p><strong>Text segmentation by character</strong></p><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>state_of_the_union = &#34;&#34;&#34;
+</span></span><span style=display:flex><span>Mr and Mrs Dursley, of number four, Privet Drive, were proud to say that they were perfectly normal, thank you very much. They 
+</span></span><span style=display:flex><span>were the last people you’d expect to be involved in anything strange or mysterious, because they just didn’t hold with such 
+</span></span><span style=display:flex><span>nonsense. Mr Dursley was the director of a firm called Grunnings, which made drills. He was a big, beefy man with hardly any neck, 
+</span></span><span style=display:flex><span>although he did have a very large moustache. Mrs Dursley was thin and blonde and had nearly twice the usual amount of neck, 
+</span></span><span style=display:flex><span>which came in very useful as she spent so much of her time craning over garden fences, spying on the neighbours. The Dursleys had a 
+</span></span><span style=display:flex><span>small son called Dudley and in their opinion there was no finer boy anywhere. 
+</span></span><span style=display:flex><span>&#34;&#34;&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>from langchain.text_splitter import CharacterTextSplitter
+</span></span><span style=display:flex><span>text_splitter = CharacterTextSplitter (        
+</span></span><span style=display:flex><span>separator = &#34;\n\n&#34;,
+</span></span><span style=display:flex><span>    chunk_size = 128, # Chunk length
+</span></span><span style=display:flex><span>    chunk_overlap = 10, # Overlapped text length
+</span></span><span style=display:flex><span>    length_function = len ,
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>texts = text_ splitter. create _documents ([ state_of_the_union ])
+</span></span><span style=display:flex><span>print( texts[ 0])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># Here metadatas are used to distinguish different documents
+</span></span><span style=display:flex><span>metadatas = [{&#34;document&#34;: 1}, {&#34;document&#34;: 2}]
+</span></span><span style=display:flex><span>documents = text_ splitter. create _documents ([ state_of_the_union , state_of_the_union ], metadatas = metadatas )
+</span></span><span style=display:flex><span>pprint (documents)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># Get the cut text
+</span></span><span style=display:flex><span>print( text_ splitter. split _text ( state_of_the_union )[0])
+</span></span></code></pre></div><p><strong>Split the code</strong></p><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python3 data-lang=python3><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>langchain.text_splitter</span> <span style=color:#069;font-weight:700>import</span> (
+</span></span><span style=display:flex><span>    RecursiveCharacterTextSplitter ,
+</span></span><span style=display:flex><span>Language,
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#366>print</span>([ e<span style=color:#555>.</span>value <span style=color:#069;font-weight:700>for</span> e <span style=color:#000;font-weight:700>in</span> Language]) <span style=color:#09f;font-style:italic># supported languages</span>
+</span></span><span style=display:flex><span><span style=color:#366>print</span>(RecursiveCharacterTextSplitter<span style=color:#555>.</span>get_separators_for_language(Language<span style=color:#555>.</span>PYTHON)) <span style=color:#09f;font-style:italic># separator</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>PYTHON_CODE <span style=color:#555>=</span> <span style=color:#c30>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#c30>def hello_world ( ) :
+</span></span></span><span style=display:flex><span><span style=color:#c30>    print( &#34;Hello, World!&#34;)
+</span></span></span><span style=display:flex><span><span style=color:#c30>
+</span></span></span><span style=display:flex><span><span style=color:#c30># Call the function
+</span></span></span><span style=display:flex><span><span style=color:#c30>hello_world ( ) _
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>python_splitter <span style=color:#555>=</span> RecursiveCharacterTextSplitter<span style=color:#555>.</span>from_language ( _
+</span></span><span style=display:flex><span>language<span style=color:#555>=</span> Language<span style=color:#555>.</span>PYTHON , chunk_size <span style=color:#555>=</span><span style=color:#f60>50</span>, chunk_overlap <span style=color:#555>=</span><span style=color:#f60>0</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>python_docs <span style=color:#555>=</span> python_ splitter<span style=color:#555>.</span> create _documents ([PYTHON_CODE])
+</span></span><span style=display:flex><span>python_docs
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#c30>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#c30>[ Document( page_content =&#39;def hello_world ():</span><span style=color:#c30;font-weight:700>\n</span><span style=color:#c30> print(&#34;Hello, World!&#34;)&#39;, metadata=</span><span style=color:#a00>{}</span><span style=color:#c30>),
+</span></span></span><span style=display:flex><span><span style=color:#c30> Document( page_content =&#39;# Call the function\ nhello_world ()&#39;, metadata=</span><span style=color:#a00>{}</span><span style=color:#c30>)]
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#34;&#34;&#34;</span>
+</span></span></code></pre></div><p><strong>Split by markdownheader</strong></p><p>For example: <code>md = # Foo\n\n ## Bar\n\ nHi this is Jim \ nHi this is Joe\n\n ## Baz\n\n Hi this is Molly' .</code>We define the split header : <code>[("#", "Header 1"),("##", "Header 2")]</code> The text should be split by the common header, and finally get: `{&lsquo;content&rsquo;: &lsquo;Hi this is Jim \nHi this is Joe&rsquo;, &lsquo;metadata&rsquo;: {&lsquo;Header 1&rsquo;: &lsquo;Foo&rsquo;, &lsquo;Header 2&rsquo;: &lsquo;Bar&rsquo;}} {&lsquo;content&rsquo;: &lsquo;Hi this is Molly&rsquo;, &lsquo;metadata&rsquo;: {&rsquo; Header 1&rsquo;: &lsquo;Foo&rsquo;, &lsquo;Header 2&rsquo;: &lsquo;Baz&rsquo;}}</p><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>from langchain.text_splitter import MarkdownHeaderTextSplitter
+</span></span><span style=display:flex><span>markdown_document = &#34;# Foo\n\n ## Bar\n\ nHi this is Jim\n\ nHi this is Joe\n\n ### Boo \n\n Hi this is Lance \n\n ## Baz\ n\n Hi this is Molly&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>headers_to_split_on = [
+</span></span><span style=display:flex><span>(&#34;#&#34;, &#34;Header 1&#34;),
+</span></span><span style=display:flex><span>(&#34;##&#34;, &#34;Header 2&#34;),
+</span></span><span style=display:flex><span>(&#34;###&#34;, &#34;Header 3&#34;),
+</span></span><span style=display:flex><span>]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>markdown_splitter = MarkdownHeaderTextSplitter(headers_to_split_on=headers_to_split_on)
+</span></span><span style=display:flex><span>md_header_splits = markdown_ splitter. split _text ( markdown_document )
+</span></span><span style=display:flex><span>md_header_splits
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&#34;&#34;&#34;
+</span></span><span style=display:flex><span>[ Document( page_content =&#39;Hi this is Jim \ nHi this is Joe&#39;, metadata={&#39;Header 1&#39;: &#39;Foo&#39;, &#39;Header 2&#39;: &#39;Bar&#39;}),
+</span></span><span style=display:flex><span>     Document( page_content =&#39;Hi this is Lance&#39;, metadata={&#39;Header 1&#39;: &#39;Foo&#39;, &#39;Header 2&#39;: &#39;Bar&#39;, &#39;Header 3&#39;: &#39;Boo&#39;}),
+</span></span><span style=display:flex><span>     Document( page_content =&#39;Hi this is Molly&#39;, metadata={&#39;Header 1&#39;: &#39;Foo&#39;, &#39;Header 2&#39;: &#39;Baz&#39;})]
+</span></span><span style=display:flex><span>&#34;&#34;&#34;
+</span></span></code></pre></div><h3 id=model-io>Model I/O</h3><p>Language models come in various forms, including Large Language Models (LLMs), chat models, and text embedding models.</p><ul><li><p><strong>Large Language Models (LLMs)</strong>: These are the primary models we discuss. They take a text string as input and produce a text string as an output.</p></li><li><p><strong>Chat Models</strong>: These are our second focus. While they are typically powered by a language model, their API is more structured. Specifically, they process a sequence of chat messages as input and generate a corresponding chat message in response.</p></li><li><p><strong>Text Embedding Models</strong>: These models are designed to convert text into a numerical representation. When given text as input, they yield a list of floating-point numbers.</p></li></ul><p>LangChain offers essential tools to seamlessly integrate any language model.</p><ul><li><strong>TIP: Templating, Dynamic Selection, and Managing Model Input</strong></li></ul><p>A new way to program models is through prompts. A hint refers to the input to the model. This input is usually composed of multiple components. LangChain provides several classes and functions that make it easy to construct and process hint messages. Commonly used methods are: PromptTemplate: where parameterizes model input; and Example Selector: dynamically selects examples to be included in the prompt.</p><p>A prompt template can contain: instructions to the language model; a small set of examples to help the language model generate a better response; a question to the language model. For example:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python3 data-lang=python3><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>langchain</span> <span style=color:#069;font-weight:700>import</span> PromptTemplate
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>template <span style=color:#555>=</span> <span style=color:#c30>&#34;&#34;&#34;/
+</span></span></span><span style=display:flex><span><span style=color:#c30>You are a naming consultant for new companies.
+</span></span></span><span style=display:flex><span><span style=color:#c30>What is a good name for a company that makes </span><span style=color:#a00>{product}</span><span style=color:#c30>?
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>prompt <span style=color:#555>=</span> PromptTemplate<span style=color:#555>.</span> from_template (template)
+</span></span><span style=display:flex><span>prompt<span style=color:#555>.</span> <span style=color:#366>format</span> (product<span style=color:#555>=</span><span style=color:#c30>&#34;colorful socks&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#c30>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#c30>You are a naming consultant for new companies.
+</span></span></span><span style=display:flex><span><span style=color:#c30>What is a good name for a company that makes colorful socks?
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#34;&#34;&#34;</span>
+</span></span></code></pre></div><p>If you need to create a role-related message template, you need to use MessagePromptTemplate .</p><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python3 data-lang=python3><span style=display:flex><span>template<span style=color:#555>=</span><span style=color:#c30>&#34;You are a helpful assistant that translates { input_language } to { output_language }.&#34;</span>
+</span></span><span style=display:flex><span>system_message_prompt <span style=color:#555>=</span> SystemMessagePromptTemplate<span style=color:#555>.</span>from_template (template)
+</span></span><span style=display:flex><span>human_template <span style=color:#555>=</span><span style=color:#c30>&#34;</span><span style=color:#a00>{text}</span><span style=color:#c30>&#34;</span>
+</span></span><span style=display:flex><span>human_message_prompt <span style=color:#555>=</span> HumanMessagePromptTemplate<span style=color:#555>.</span> from_template ( human_template )
+</span></span></code></pre></div><p>Types of MessagePromptTemplate : LangChain provides different types of MessagePromptTemplate . The most commonly used ones are AIMessagePromptTemplate , SystemMessagePromptTemplate , and HumanMessagePromptTemplate , which create AI messages, system messages, and human messages, respectively.</p><p>Generic Prompt Template: Suppose we want LLM to generate an English interpretation of a function name. To accomplish this, we&rsquo;ll create a custom prompt template that takes a function name as input and format the prompt template to provide the source code for that function.</p><p>We first create a function that will return the source code of the given function.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>import inspect
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def get_source_code ( function_name ):
+</span></span><span style=display:flex><span># Get the source code of the function
+</span></span><span style=display:flex><span>return inspect. getsource ( function_name )
+</span></span></code></pre></div><p>Next, we&rsquo;ll create a custom prompt template that takes the function name as input and formats the prompt template to provide the function&rsquo;s source code.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python3 data-lang=python3><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>langchain.prompts</span> <span style=color:#069;font-weight:700>import</span> StringPromptTemplate
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>pydantic</span> <span style=color:#069;font-weight:700>import</span> BaseModel , validator
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>class</span> <span style=color:#0a8;font-weight:700>FunctionExplainerPromptTemplate</span> ( StringPromptTemplate , BaseModel ):
+</span></span><span style=display:flex><span><span style=color:#c30>&#34;&#34;&#34;A custom prompt template that takes in the function name as input, and formats the prompt template to provide the source code of the function.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#99f>@validator</span>(<span style=color:#c30>&#34;input_variables&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>def</span> <span style=color:#c0f>validate_input_variables</span> ( cls , v):
+</span></span><span style=display:flex><span><span style=color:#c30>&#34;&#34;&#34;Validate that the input variables are correct.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>if</span> <span style=color:#366>len</span> (v ) <span style=color:#a00;background-color:#faa>!</span> <span style=color:#555>=</span> <span style=color:#f60>1</span> <span style=color:#000;font-weight:700>or</span> <span style=color:#c30>&#34; function_name &#34;</span> <span style=color:#000;font-weight:700>not</span> <span style=color:#000;font-weight:700>in</span> v:
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>raise</span> <span style=color:#c00;font-weight:700>ValueError</span> ( <span style=color:#c30>&#34; function_name must be the only input_variable .&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>return</span> v
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>def</span> <span style=color:#c0f>format</span>( self, <span style=color:#555>**</span> kwargs ) <span style=color:#555>-&gt;</span> <span style=color:#366>str</span>:
+</span></span><span style=display:flex><span><span style=color:#09f;font-style:italic># Get the source code of the function</span>
+</span></span><span style=display:flex><span>        source_code <span style=color:#555>=</span> get_source_code ( kwargs [<span style=color:#c30>&#34; function_name &#34;</span>])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#09f;font-style:italic># Generate the prompt to be sent to the language model</span>
+</span></span><span style=display:flex><span>prompt <span style=color:#555>=</span> <span style=color:#c30>f</span><span style=color:#c30>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#c30>Given the function name and source code, generate an English language explanation of the function.
+</span></span></span><span style=display:flex><span><span style=color:#c30>Function Name: </span><span style=color:#a00>{</span> kwargs [<span style=color:#c30>&#34; function_name &#34;</span> ]<span style=color:#555>.</span>_ _name__<span style=color:#a00>}</span><span style=color:#c30>
+</span></span></span><span style=display:flex><span><span style=color:#c30>Source Code:
+</span></span></span><span style=display:flex><span><span style=color:#c30></span><span style=color:#a00>{</span> source_code <span style=color:#a00>}</span><span style=color:#c30>
+</span></span></span><span style=display:flex><span><span style=color:#c30>Explanation:
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>return</span> prompt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def_prompt_type ( self):
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>return</span> <span style=color:#c30>&#34;function-explainer&#34;</span>
+</span></span></code></pre></div><ul><li><strong>Language Model: Interface for Language Models</strong></li></ul><p>Language models vary, with notable distinctions between LLMs and chat models. In LangChain, LLM denotes a plain text completion model. These models have APIs that accept a string prompt and return a string completion. For instance, OpenAI&rsquo;s GPT-3 is an LLM. Chat models, while often underpinned by LLMs, are tailored for conversations. Their API differs from the plain text completion model, accepting a list of chat messages, tagged with the speaker (typically &ldquo;system&rdquo;, &ldquo;AI&rdquo;, or &ldquo;human&rdquo;), and returning an &ldquo;AI&rdquo; chat message. Both GPT-4 and Anthropic&rsquo;s Claude are chat models.</p><p>To facilitate the interchangeability of LLM and chat models, both adopt the foundational language model interface, revealing common methods like &ldquo;predict&rdquo; and &ldquo;pred messages&rdquo;. While it&rsquo;s advisable to use model-specific methods (e.g., LLM&rsquo;s &ldquo;predict&rdquo; and chat model&rsquo;s &ldquo;predict message&rdquo;), a shared interface is beneficial for versatile applications.</p><p>Using an LLM is straightforward: input a string and receive a string completion.</p><p>The generate function allows batch calls and richer outputs. For instance:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>llm_result = llm. generate ([&#34;Tell me a joke&#34;, &#34;Tell me a poem&#34;]*15)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>len ( llm_result.generations ) _
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&#39;&#39;&#39;
+</span></span><span style=display:flex><span>30
+</span></span><span style=display:flex><span>&#39;&#39;&#39;
+</span></span><span style=display:flex><span>llm_result . generations [0]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&#39;&#39;&#39;
+</span></span><span style=display:flex><span>[ Generation( text=&#39;\n\ nWhy did the chicken cross the road?\n\ nTo get to the other side!&#39;),
+</span></span><span style=display:flex><span>     Generation( text=&#39;\n\ nWhy did the chicken cross the road?\n\ nTo get to the other side.&#39;)]
+</span></span><span style=display:flex><span>&#39;&#39;&#39;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>llm_result.generations [-1 ]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&#39;&#39;&#39;
+</span></span><span style=display:flex><span>[Generation(text=&#34;\n\ nWhat if love neverspeech \n\ nWhat if love never ended\n\ nWhat if love was only a feeling\n\ nI&#39;ll never know this love\n\ nIt&#39;s not a feeling\n \ nBut it&#39;s what we have for each other\n\ nWe just know that love is something strong\n\ nAnd we can&#39;t help but be happy\n\ nWe just feel what love is for us\n\ nAnd we love each other with all our heart\n\ nWe just don&#39;t know how\n\ nHow it will go\n\ nBut we know that love is something strong\n\ nAnd we&#39;ll always have each other\n\ nIn our lives .&#34;),
+</span></span><span style=display:flex><span>     Generation( text=&#39;\n\ nOnce upon a time\n\ nThere was a love so pure and true\n\ nIt lasted for centuries\n\ nAnd never became stale or dry\n\ nIt was moving and alive\n\ nAnd the heart of the love-ick\n\ nIs still beating strong and true.&#39;)]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>You can also access provider specific information that is returned. This information is NOT standardized across providers.
+</span></span><span style=display:flex><span>&#39;&#39;&#39;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>llm_result.llm_output
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&#39;&#39;&#39;
+</span></span><span style=display:flex><span>{&#39; token_usage &#39;: {&#39; completion_tokens &#39;: 3903,
+</span></span><span style=display:flex><span>&#39; total_tokens &#39;: 4023 ,
+</span></span><span style=display:flex><span>&#39; prompt_tokens &#39; : 120}}
+</span></span><span style=display:flex><span>&#39;&#39;&#39;
+</span></span></code></pre></div><ul><li><strong>Output Analyzer: Deciphering Model Outputs</strong></li></ul><p>Output parsers structure language model responses. They primarily implement two methods:</p><ul><li>&ldquo;Get format specification&rdquo;: This method returns a string containing an indication of how the output of the language model should be formatted.</li><li>&ldquo;parse&rdquo;: This method takes a string (assumed to be a response from a language model) and parses it into some structure.</li><li>&ldquo;parsing with hints&rdquo;: This method is optional and takes a string (supposed to be a response from the language model) and a hint (supposed to be the hint that produced such a response) and parses it into some structure . Hints are primarily provided in cases where the OutputParser wants to retry or fix the output in some way, and needs information from the hint to do so.</li></ul><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python3 data-lang=python3><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>langchain.prompts</span> <span style=color:#069;font-weight:700>import</span> PromptTemplate , ChatPromptTemplate , HumanMessagePromptTemplate
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>langchain.llms</span> <span style=color:#069;font-weight:700>import</span> OpenAI
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>langchain.chat_models</span> <span style=color:#069;font-weight:700>import</span> ChatOpenAI _
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>langchain.output_parsers</span> <span style=color:#069;font-weight:700>import</span> PydanticOutputParser _
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>pydantic</span> <span style=color:#069;font-weight:700>import</span> BaseModel , Field, validator
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>typing</span> <span style=color:#069;font-weight:700>import</span> <span style=color:#366>list</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>model_name <span style=color:#555>=</span> <span style=color:#c30>&#39;text-davinci-003&#39;</span>
+</span></span><span style=display:flex><span>temperature <span style=color:#555>=</span> <span style=color:#f60>0.0</span>
+</span></span><span style=display:flex><span>model <span style=color:#555>=</span> OpenAI( model_name <span style=color:#555>=</span> model_name , temperature<span style=color:#555>=</span>temperature)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#09f;font-style:italic># Define your desired data structure.</span>
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>class</span> <span style=color:#0a8;font-weight:700>Joke</span>( BaseModel ):
+</span></span><span style=display:flex><span>setup: <span style=color:#366>str</span> <span style=color:#555>=</span> Field( description<span style=color:#555>=</span><span style=color:#c30>&#34;question to set up a joke&#34;</span>)
+</span></span><span style=display:flex><span>punchline: <span style=color:#366>str</span> <span style=color:#555>=</span> Field( description<span style=color:#555>=</span><span style=color:#c30>&#34;answer to resolve the joke&#34;</span>)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span><span style=color:#09f;font-style:italic># You can add custom validation logic easily with Pydantic .</span>
+</span></span><span style=display:flex><span><span style=color:#99f>@validator</span>(<span style=color:#c30>&#39;setup&#39;</span>)
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>def</span> <span style=color:#c0f>question_ends_with_question_mark</span> ( cls , field) :
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>if</span> field[ <span style=color:#555>-</span><span style=color:#f60>1</span>] <span style=color:#555>!=</span> <span style=color:#c30>&#39;?&#39;</span>:
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>raise</span> <span style=color:#c00;font-weight:700>ValueError</span> ( <span style=color:#c30>&#34;Badly formed question!&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>return</span> field
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#09f;font-style:italic># Set up a parser + inject instructions into the prompt template.</span>
+</span></span><span style=display:flex><span>parser <span style=color:#555>=</span> PydanticOutputParser ( pydantic_object <span style=color:#555>=</span>Joke)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>prompt <span style=color:#555>=</span> PromptTemplate (
+</span></span><span style=display:flex><span>template<span style=color:#555>=</span><span style=color:#c30>&#34;Answer the user query.</span><span style=color:#c30;font-weight:700>\n</span><span style=color:#c30>{ format_ instructions }\ n</span><span style=color:#a00>{query}</span><span style=color:#c30;font-weight:700>\n</span><span style=color:#c30>&#34;</span>,
+</span></span><span style=display:flex><span>    input_variables <span style=color:#555>=</span> [<span style=color:#c30>&#34;query&#34;</span>],
+</span></span><span style=display:flex><span>    partial_variables <span style=color:#555>=</span>{ <span style=color:#c30>&#34; format_instructions &#34;</span>: parser<span style=color:#555>.</span>get_format_instructions ()}
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#09f;font-style:italic># And a query intended to prompt a language model to populate the data structure.</span>
+</span></span><span style=display:flex><span>joke_query <span style=color:#555>=</span> <span style=color:#c30>&#34;Tell me a joke.&#34;</span>
+</span></span><span style=display:flex><span>_input <span style=color:#555>=</span> prompt<span style=color:#555>.</span> <span style=color:#366>format</span> _prompt (query<span style=color:#555>=</span> joke_query )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>output <span style=color:#555>=</span> model(_ <span style=color:#366>input</span><span style=color:#555>.</span> to_ string ( ))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>parser<span style=color:#555>.</span> parse (output)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Joke( setup<span style=color:#555>=</span><span style=color:#c30>&#39;Why did the chicken cross the road?&#39;</span>, punchline<span style=color:#555>=</span><span style=color:#c30>&#39;To get to the other side!&#39;</span>)
+</span></span></code></pre></div><h3 id=chain-components>Chain components</h3><p>For intricate applications that necessitate linking LLMs in series, the Chain component is essential. LangChain offers a Chain interface for such applications. Its primary interface is:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python3 data-lang=python3><span style=display:flex><span><span style=color:#069;font-weight:700>class</span> <span style=color:#0a8;font-weight:700>Chain</span>( BaseModel , ABC):
+</span></span><span style=display:flex><span><span style=color:#c30>&#34;&#34;&#34;Base interface that all chains should implement.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>memory: BaseMemory
+</span></span><span style=display:flex><span>callbacks: Callbacks
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>def</span> <span style=color:#c0f>__call_</span> _(
+</span></span><span style=display:flex><span>self,
+</span></span><span style=display:flex><span>inputs: Any,
+</span></span><span style=display:flex><span>        return_only_outputs : <span style=color:#366>bool</span> <span style=color:#555>=</span> <span style=color:#069;font-weight:700>False</span>,
+</span></span><span style=display:flex><span>callbacks: Callbacks <span style=color:#555>=</span> <span style=color:#069;font-weight:700>None</span>,
+</span></span><span style=display:flex><span>) <span style=color:#555>-&gt;</span> Dict [ <span style=color:#366>str</span>, Any]:
+</span></span><span style=display:flex><span><span style=color:#555>...</span>
+</span></span></code></pre></div><p>Chains allow us to join multiple components together to create a single, coherent application. For example, we can create a chain that takes user input, formats it with a PromptTemplate , and passes the formatted response to LLM. We can build more complex chains by combining multiple chains together, or combining chains with other components. LLMChain is the most basic building block chain. It takes a prompt template, formats it with user input, and returns a response from the LLM.</p><p>We start by creating a prompt template:</p><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>from langchain.llms import OpenAI
+</span></span><span style=display:flex><span>from langchain.prompts import PromptTemplate
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>llm = OpenAI(temperature=0.9)
+</span></span><span style=display:flex><span>prompt = PromptTemplate (
+</span></span><span style=display:flex><span>    input_variables = [&#34;product&#34;],
+</span></span><span style=display:flex><span>template=&#34;What is a good name for a company that makes {product}?&#34;,
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></div><p>Then, create a very simple chain that will take input from the user, use it to format the prompt, and send it to LLM.</p><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python3 data-lang=python3><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>langchain.chains</span> <span style=color:#069;font-weight:700>import</span> LLMChain
+</span></span><span style=display:flex><span>chain <span style=color:#555>=</span> LLMChain ( llm <span style=color:#555>=</span> llm , prompt<span style=color:#555>=</span>prompt)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#09f;font-style:italic># Run the chain only specifying the input variable.</span>
+</span></span><span style=display:flex><span><span style=color:#366>print</span>( chain<span style=color:#555>.</span> run (<span style=color:#c30>&#34;colorful socks&#34;</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Colorful Toes Co<span style=color:#555>.</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#c30>&#39;&#39;&#39;
+</span></span></span><span style=display:flex><span><span style=color:#c30>If you have multiple variables, you can use a dictionary to enter them all at once.
+</span></span></span><span style=display:flex><span><span style=color:#c30>&#39;&#39;&#39;</span>
+</span></span><span style=display:flex><span>prompt <span style=color:#555>=</span> PromptTemplate (
+</span></span><span style=display:flex><span>    input_variables <span style=color:#555>=</span> [ <span style=color:#c30>&#34;company&#34;</span>, <span style=color:#c30>&#34;product&#34;</span>],
+</span></span><span style=display:flex><span>template<span style=color:#555>=</span><span style=color:#c30>&#34;What is a good name for </span><span style=color:#a00>{company}</span><span style=color:#c30> that makes </span><span style=color:#a00>{product}</span><span style=color:#c30>?&#34;</span>,
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>chain <span style=color:#555>=</span> LLMChain ( llm <span style=color:#555>=</span> llm , prompt<span style=color:#555>=</span>prompt)
+</span></span><span style=display:flex><span><span style=color:#366>print</span>( chain<span style=color:#555>.</span> run ({
+</span></span><span style=display:flex><span><span style=color:#c30>&#39;company&#39;</span>: <span style=color:#c30>&#34;ABC Startup&#34;</span>,
+</span></span><span style=display:flex><span><span style=color:#c30>&#39;product&#39;</span>: <span style=color:#c30>&#34;colorful socks&#34;</span>
+</span></span><span style=display:flex><span>}))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Socktopia Colorful Creations<span style=color:#555>.</span>
+</span></span></code></pre></div><p>It is also possible to use a chat model in LLMChain :</p><div class=highlight><pre tabindex=0 style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python3 data-lang=python3><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>langchain.chat_models</span> <span style=color:#069;font-weight:700>import</span> ChatOpenAI _
+</span></span><span style=display:flex><span><span style=color:#069;font-weight:700>from</span> <span style=color:#0cf;font-weight:700>langchain.prompts.chat</span> <span style=color:#069;font-weight:700>import</span> (
+</span></span><span style=display:flex><span>    ChatPromptTemplate ,
+</span></span><span style=display:flex><span>    HumanMessagePromptTemplate ,
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>human_message_prompt <span style=color:#555>=</span> HumanMessagePromptTemplate (
+</span></span><span style=display:flex><span>prompt <span style=color:#555>=</span> PromptTemplate (
+</span></span><span style=display:flex><span>template<span style=color:#555>=</span><span style=color:#c30>&#34;What is a good name for a company that makes </span><span style=color:#a00>{product}</span><span style=color:#c30>?&#34;</span>,
+</span></span><span style=display:flex><span>            input_variables <span style=color:#555>=</span> [<span style=color:#c30>&#34;product&#34;</span>],
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>chat_prompt_template <span style=color:#555>=</span> ChatPromptTemplate<span style=color:#555>.</span>from_messages ([ human_message_prompt ])
+</span></span><span style=display:flex><span>chat <span style=color:#555>=</span> ChatOpenAI (temperature<span style=color:#555>=</span><span style=color:#f60>0.9</span>)
+</span></span><span style=display:flex><span>chain <span style=color:#555>=</span> LLMChain ( llm <span style=color:#555>=</span>chat, prompt<span style=color:#555>=</span> chat_prompt_template )
+</span></span><span style=display:flex><span><span style=color:#366>print</span>( chain<span style=color:#555>.</span> run (<span style=color:#c30>&#34;colorful socks&#34;</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Rainbow Socks Co<span style=color:#555>.</span>
+</span></span></code></pre></div><h3 id=chain-serialization>Chain Serialization</h3><p>For saving and loading chains, refer to: <a href=https://python.langchain.com/docs/modules/chains/how_to/serialization target=_blank>Serialization | ️ Langchain</a>
+.</p><h3 id=in-summary>In Summary</h3><p>LangChain offers a suite of components tailored for diverse applications like personal assistants, chatbots, and more. It streamlines the development of advanced language model applications through its modular design. By grasping core concepts like components, chains, and output parsers, users can craft custom solutions for specific needs. LangChain empowers users to harness the full capabilities of language models, paving the way for intelligent, context-aware applications across various domains.</p></div><div class="row items-start justify-between"><div class="lg:col-5 mb-10 flex items-center lg:mb-0"><h5 class=mr-3>Tags :</h5><ul><li class=inline-block><a class="bg-theme-light hover:bg-primary dark:bg-darkmode-theme-light dark:hover:bg-darkmode-primary dark:hover:text-dark m-1 block rounded px-3 py-1 hover:text-white" href=/tags/langchain/>Langchain</a></li><li class=inline-block><a class="bg-theme-light hover:bg-primary dark:bg-darkmode-theme-light dark:hover:bg-darkmode-primary dark:hover:text-dark m-1 block rounded px-3 py-1 hover:text-white" href=/tags/deep-lake/>Deep lake</a></li></ul></div><div class="lg:col-4 flex items-center"><div class=share-icons><h5 class=share-title>Share :</h5><a class="share-link share-facebook" href="https://facebook.com/sharer/sharer.php?u=%25%21s%28%3cnil%3e%29" target=_blank rel=noopener aria-label="share facebook"><span class=share-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/></svg></span></a><a class="share-link share-twitter" href="https://twitter.com/intent/tweet/?text=Share&amp;url=%25%21s%28%3cnil%3e%29" target=_blank rel=noopener aria-label="share twitter"><span aria-hidden=true class=share-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23.44 4.83c-.8.37-1.5.38-2.22.02.93-.56.98-.96 1.32-2.02-.88.52-1.86.9-2.9 1.1-.82-.88-2-1.43-3.3-1.43-2.5.0-4.55 2.04-4.55 4.54.0.36.03.7.1 1.04-3.77-.2-7.12-2-9.36-4.75-.4.67-.6 1.45-.6 2.3.0 1.56.8 2.95 2 3.77-.74-.03-1.44-.23-2.05-.57v.06c0 2.2 1.56 4.03 3.64 4.44-.67.2-1.37.2-2.06.08.58 1.8 2.26 3.12 4.25 3.16C5.78 18.1 3.37 18.74 1 18.46c2 1.3 4.4 2.04 6.97 2.04 8.35.0 12.92-6.92 12.92-12.93.0-.2.0-.4-.02-.6.9-.63 1.96-1.22 2.56-2.14z"/></svg></span></a><a class="share-link share-email" href="mailto:?subject=Share&amp;body=%25%21s%28%3cnil%3e%29" target=_self rel=noopener aria-label="share email"><span aria-hidden=true class=share-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 4H2C.9 4 0 4.9.0 6v12c0 1.1.9 2 2 2h20c1.1.0 2-.9 2-2V6c0-1.1-.9-2-2-2zM7.25 14.43l-3.5 2c-.08.05-.17.07-.25.07-.17.0-.34-.1-.43-.25-.14-.24-.06-.55.18-.68l3.5-2c.24-.14.55-.06.68.18.14.24.06.55-.18.68zm4.75.07c-.1.0-.2-.03-.27-.08l-8.5-5.5c-.23-.15-.3-.46-.15-.7.15-.22.46-.3.7-.14L12 13.4l8.23-5.32c.23-.15.54-.08.7.15.14.23.07.54-.16.7l-8.5 5.5c-.08.04-.17.07-.27.07zm8.93 1.75c-.1.16-.26.25-.43.25-.08.0-.17-.02-.25-.07l-3.5-2c-.24-.13-.32-.44-.18-.68s.44-.32.68-.18l3.5 2c.24.13.32.44.18.68z"/></svg></span></a><a class="share-link share-reddit" href="https://reddit.com/submit/?url=%25%21s%28%3cnil%3e%29&amp;resubmit=true&amp;title=Share" target=_blank rel=noopener aria-label="share reddit"><span aria-hidden=true class=share-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 11.5c0-1.65-1.35-3-3-3-.96.0-1.86.48-2.42 1.24-1.64-1-3.75-1.64-6.07-1.72.08-1.1.4-3.05 1.52-3.7.72-.4 1.73-.24 3 .5C17.2 6.3 18.46 7.5 20 7.5c1.65.0 3-1.35 3-3s-1.35-3-3-3c-1.38.0-2.54.94-2.88 2.22-1.43-.72-2.64-.8-3.6-.25-1.64.94-1.95 3.47-2 4.55-2.33.08-4.45.7-6.1 1.72C4.86 8.98 3.96 8.5 3 8.5c-1.65.0-3 1.35-3 3 0 1.32.84 2.44 2.05 2.84-.03.22-.05.44-.05.66.0 3.86 4.5 7 10 7s10-3.14 10-7c0-.22-.02-.44-.05-.66 1.2-.4 2.05-1.54 2.05-2.84zM2.3 13.37C1.5 13.07 1 12.35 1 11.5c0-1.1.9-2 2-2 .64.0 1.22.32 1.6.82-1.1.85-1.92 1.9-2.3 3.05zm3.7.13c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9.8 4.8c-1.08.63-2.42.96-3.8.96-1.4.0-2.74-.34-3.8-.95-.24-.13-.32-.44-.2-.68.15-.24.46-.32.7-.18 1.83 1.06 4.76 1.06 6.6.0.23-.13.53-.05.67.2.14.23.06.54-.18.67zm.2-2.8c-1.1.0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm5.7-2.13c-.38-1.16-1.2-2.2-2.3-3.05.38-.5.97-.82 1.6-.82 1.1.0 2 .9 2 2 0 .84-.53 1.57-1.3 1.87z"/></svg></span></a></div></div></div></article></div></div></section></main><footer class="bg-theme-light dark:bg-darkmode-theme-light"><div class=container><div class="row items-center py-10"><div class="lg:col-3 mb-8 text-center lg:mb-0 lg:text-left"><a class="navbar-brand inline-block" href=/><img fetchpriority=high decoding=async class="img logo-light" width=160 height=32 src=/images/logo_hu85ab06904fd41a5fc5ca32f350144ba0_234496_320x0_resize_q90_h2_lanczos_3.webp alt="Zeen Wang" onerror='this.onerror=null,this.src="/images/logo_hu85ab06904fd41a5fc5ca32f350144ba0_234496_320x0_resize_lanczos_3.png"'>
+<img fetchpriority=high decoding=async class="img logo-dark" width=160 height=32 src=/images/logo-darkmode_hu95dd250582672ebe0c063cf60eed448f_3090_320x0_resize_q90_h2_lanczos_3.webp alt="Zeen Wang" onerror='this.onerror=null,this.src="/images/logo-darkmode_hu95dd250582672ebe0c063cf60eed448f_3090_320x0_resize_lanczos_3.png"'></a></div><div class="lg:col-6 mb-8 text-center lg:mb-0"><ul><li class="m-3 inline-block"><a href=/about/>About</a></li><li class="m-3 inline-block"><a href=/blog/>Blog</a></li><li class="m-3 inline-block"><a href=/authors/>Project</a></li></ul></div><div class="lg:col-3 mb-8 text-center lg:mb-0 lg:mt-0 lg:text-right"><ul class=social-icons><li><a target=_blank aria-label=facebook rel="nofollow noopener" href=https://www.facebook.com/><i class="fab fa-facebook"></i></a></li><li><a target=_blank aria-label=twitter rel="nofollow noopener" href=https://twitter.com/><i class="fab fa-twitter"></i></a></li><li><a target=_blank aria-label=github rel="nofollow noopener" href=https://www.github.com/><i class="fab fa-github"></i></a></li><li><a target=_blank aria-label=linkedin rel="nofollow noopener" href=https://www.linkedin.com/in/zeen-wang-31a864223/><i class="fab fa-linkedin"></i></a></li></ul></div></div></div><div class="border-border dark:border-darkmode-border border-t py-7"><div class="text-light dark:text-darkmode-light container text-center"><p>Designed & Developed by Zeen</p></div></div></footer><script crossorigin=anonymous integrity="sha256-df6tUhrDHLWOxj6GJeZpjflQXCX9AzMB71gZRKq0evQ=" src=/js/script.min.75fead521ac31cb58ec63e8625e6698df9505c25fd033301ef581944aab47af4.js></script>
+<script>"serviceWorker"in navigator&&navigator.serviceWorker.register("/service-worker.js")</script></body></html>
